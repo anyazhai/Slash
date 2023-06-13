@@ -1,10 +1,10 @@
 export default function Headerbar() {
     return (
-        <div >
+        <div className="header-bar">
         <h1>Logo</h1>
 
         <div className="profile-image">
-
+            CS
         </div>
         </div>
     );
