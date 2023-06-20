@@ -1,6 +1,9 @@
 import { useState } from "react";
-import Task from "./Task"
 import { Container, Draggable } from "react-smooth-dnd";
+
+import Task from "./Task"
+import AddTask from "./AddTask";
+import AddColumn from "./AddColumn";
 
 export default function Column({column_name}){
 
@@ -23,6 +26,8 @@ export default function Column({column_name}){
         },
 
     ])
+
+    const [display, setDisplay] = useState(false)
 
     const onCardDrop = (dropResult) => {
         console.log("inside cardDrop" , dropResult)
@@ -64,7 +69,11 @@ export default function Column({column_name}){
                     }
                 
                 </Container> 
-            <button className="add-task-btn">Add task</button>
+            <button onClick={() => setDisplay(true)} className="add-task-btn">Add task</button>
+            
+
+            {display && <AddTask />}
+
         </div>
     )
 }

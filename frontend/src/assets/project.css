@@ -126,3 +126,31 @@
     border: 1px dashed #abc;
     margin: 5px;
 }
+
+.addtask{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 20;
+    background-color: #0000008d;
+}
+
+.add-container{
+    width: 50vw;
+    height: fit-content;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+.add-container input,.add-container select, .add-container button {
+    display: block;
+
+}

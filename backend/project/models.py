@@ -24,11 +24,10 @@ class Column(models.Model):
 
 class Task(models.Model):
     name = models.CharField(max_length=30)
-    description = models.CharField(max_length=500)
     column = models.ForeignKey(Column, on_delete=models.CASCADE)
-    assignee = models.ForeignKey(User, on_delete=models.SET_NULL)
-    priority = models.CharField(max_length=30)
-    label = models.CharField(max_length=30)
+    assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    priority = models.CharField(max_length=30) #medium high
+    type = models.CharField(max_length=30) #frontend, backend
     position = models.IntegerField()
 
     class Meta:
