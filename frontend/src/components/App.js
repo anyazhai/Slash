@@ -7,6 +7,8 @@ import Register from "./Register";
 import Project from "./project/Project";
 import CreateProject from "./project/CreateProject";
 
+import RequireAuth from './RequireAuth';
+
 function App() {
   return (
     <div className="App">
@@ -14,9 +16,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route path="/" element={<Register />} />
           <Route path="login" element={<Login />} />
-          <Route path="project" element={<Project />} />
-          <Route path="create/project" element={<CreateProject />} />
-          <Route path="Dashboard" element={<Dashboard />} />
+
+          <Route element={<RequireAuth />}>
+            <Route path="project" element={<Project />} />
+            <Route path="create/project" element={<CreateProject />} />
+            <Route path="Dashboard" element={<Dashboard />} />
+          </Route>
         </Route>
       </Routes>
     </div>

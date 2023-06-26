@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import axios from '../api/axios';
+
+const REGISTER_URL = 'register/';
 
 function Register() {
     const navigate = useNavigate();
@@ -23,7 +26,27 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        navigate('/login', { replace: true });
+        try{
+            const apiResponse = await axios.post(
+                REGISTER_URL,
+                JSON.stringify({
+                email: registerdata.email,
+                password: registerdata.password,
+                username: registerdata.username
+                }),
+                {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                },
+            );
+        
+            console.log(apiResponse)
+            navigate('/login', { replace: true });
+        } catch (err) {
+            console.log(err)
+        }
     };
 
     return (
