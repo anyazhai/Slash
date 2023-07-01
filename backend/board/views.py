@@ -1,8 +1,9 @@
 from rest_framework import views, permissions
 from rest_framework.response import Response
+from django.core import serializers
 
-from .serializers import BoardSerializer
-from .models import Board
+from .serializers import BoardSerializer, ColumnSerializer, TaskSerializer
+from .models import Board, Column, Task
 from users.models import User
 
 
@@ -12,7 +13,6 @@ class BoardView(views.APIView):
     def post(self, request):
         serializer = BoardSerializer(data=self.request.data, context={'request': self.request})
         serializer.is_valid(raise_exception=True)
-        print(request.user , "username")
         user = User.objects.get(email=request.user)
         
         Board.objects.create(user=user, name=serializer.data['name'])
@@ -23,6 +23,8 @@ class BoardView(views.APIView):
         board_object = Board.objects.get(id=id)
         response = {"name": board_object.name}
         return Response({'response': response})
+    
+
 
 
 class BoardListView(views.APIView):
@@ -37,8 +39,63 @@ class BoardListView(views.APIView):
         return Response({'response': response})
 
 
+def columnPosition(id):
+    task = Column.objects.filter(column_id=id).order_by('position').last()
+    if not task:
+        return 1
+    return task.position + 1
+    
+
 class ColumnView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def post(self, request):
-        pass
+        serializer = ColumnSerializer(data=self.request.data, context={'request': self.request})
+        serializer.is_valid(raise_exception=True)
+        print(serializer.data['board_id'])
+        position = columnPosition(serializer.data['board_id'])
+        board = Board.objects.get(id=serializer.data['board_id'])
+
+        Column.objects.create(position=position, board_id=board, name=serializer.data['name'])
+        return Response({
+            'data': serializer.data
+        })
+    
+    def get(self, request):
+        id = request.query_params.get('board_id')
+        column_objects = Column.objects.filter(board_id=id)
+        response = list()
+        for column in column_objects:
+            response.append({'id': column.id, 'name': column.name, 'position': column.position})
+        return Response({'response': response})
+
+
+def taskPosition(id):
+    column = Task.objects.filter(column_id=id).order_by('position').last()
+    if not column:
+        return 1
+    return column.position + 1
+    
+
+class TaskView(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def post(self, request):
+        serializer = TaskSerializer(data=self.request.data, context={'request': self.request})
+        serializer.is_valid(raise_exception=True)
+        print(serializer.data['column_id'])
+        position = taskPosition(serializer.data['column_id'])
+        column = Column.objects.get(id=serializer.data['column_id'])
+        print("column data", column)
+        Task.objects.create(position=position, column_id=column, name=serializer.data['name'], priority=serializer.data['priority'], type=serializer.data['type'])
+        return Response({
+            'data': 'Task added'
+        })
+    
+    def get(self, request):
+        id = request.query_params.get('column_id')
+        task_objects = Task.objects.filter(column_id=id)
+        response = list()
+        for task in task_objects:
+            response.append({'id': task.id, 'name': task.name, 'position': task.position, 'priority': task.priority, 'type':task.type, 'assignee': task.assignee})
+        return Response({'response': response})
