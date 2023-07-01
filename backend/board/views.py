@@ -1,6 +1,5 @@
 from rest_framework import views, permissions
 from rest_framework.response import Response
-from django.core import serializers
 
 from .serializers import BoardSerializer, ColumnSerializer, TaskSerializer
 from .models import Board, Column, Task
@@ -23,8 +22,6 @@ class BoardView(views.APIView):
         board_object = Board.objects.get(id=id)
         response = {"name": board_object.name}
         return Response({'response': response})
-    
-
 
 
 class BoardListView(views.APIView):
@@ -43,7 +40,7 @@ class ColumnView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def columnPosition(self, id):
-        task = Column.objects.filter(column_id=id).order_by('position').last()
+        task = Column.objects.filter(board_id=id).order_by('position').last()
         if not task:
             return 1
         return task.position + 1
@@ -68,6 +65,28 @@ class ColumnView(views.APIView):
             response.append({'id': column.id, 'name': column.name, 'position': column.position})
         return Response({'response': response})
     
+    def delete(self, request, id=None):
+        try:
+            column_object = Column.objects.get(id=id)
+            print('try')
+        except:
+            print('except')
+            return Response(status=404)
+        
+        col_count = Column.objects.filter(board_id=column_object.board_id).count()
+
+        column_object.delete()
+
+        if column_object.position == col_count:
+            return Response(status=204)
+        
+        columns = Column.objects.filter(board_id=column_object.board_id)
+        for i, col in enumerate(columns):
+            col.position = i + 1
+            col.save()
+        serializer = ColumnSerializer(columns, many=True)
+        return Response(serializer.data)
+
 
 class TaskView(views.APIView):
     permission_classes = (permissions.IsAuthenticated,)
@@ -97,3 +116,28 @@ class TaskView(views.APIView):
         for task in task_objects:
             response.append({'id': task.id, 'name': task.name, 'position': task.position, 'priority': task.priority, 'type':task.type, 'assignee': task.assignee})
         return Response({'response': response})
+    
+    def delete(self, request, id=None):
+        try:
+            task_object = Task.objects.get(id=id)
+        except:
+            return Response(status=404)
+        
+        task_count = Task.objects.filter(column_id=task_object.column_id).count()
+
+        task_object.delete()
+
+        if task_object.position == task_count:
+            return Response(status=204)
+        
+        tasks = Task.objects.filter(column_id=task_object.column_id)
+        for i, t in enumerate(tasks):
+            t.position = i + 1
+            t.save()
+        serializer = TaskSerializer(tasks, many=True)
+        return Response(serializer.data)
+    
+
+class orderColumn(views.APIView):
+    def post(self, request):
+        pass
