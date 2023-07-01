@@ -1,12 +1,12 @@
 from rest_framework import generics,status,views,permissions
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
 from .serializers import RegisterSerializer,LoginSerializer,LogoutSerializer
 
 
 class RegisterView(generics.GenericAPIView):
+    permission_classes = (permissions.AllowAny,)
     serializer_class = RegisterSerializer
+
     def post(self,request):
         user=request.data
         serializer = self.serializer_class(data=user)
@@ -17,7 +17,9 @@ class RegisterView(generics.GenericAPIView):
 
 
 class LoginAPIView(generics.GenericAPIView):
+    permission_classes = (permissions.AllowAny,)
     serializer_class = LoginSerializer
+
     def post(self,request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -27,6 +29,7 @@ class LoginAPIView(generics.GenericAPIView):
 class LogoutAPIView(generics.GenericAPIView):
     serializer_class = LogoutSerializer
     permission_classes = (permissions.IsAuthenticated,)
+
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
