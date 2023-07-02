@@ -1,26 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Container, Draggable } from "react-smooth-dnd";
 
 import Headerbar from "../Headerbar";
 import Topbar from "./Topbar";
 import Column from "./Column";
-import { Container, Draggable } from "react-smooth-dnd";
+import useAuth from '../../hooks/useAuth';
+import useAxios from '../../hooks/useAxios';
 
+const COLUMN_URL = '/column'
 export default function Project() {
-    const [columndata, setColumndata] = useState([
+    const location = useLocation();
+    const data = location.state.project.project;
+
+    const api = useAxios();
+    const { user } = useAuth();
+
+    const [columndata, setColumndata] = useState([])
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        setIsLoading(true);
+        api.get(
+            COLUMN_URL + `?board_id=${data.id}`,
             {
-                id: "column1",
-                name: "column1"
+                headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${user.access}`,
+                },
             },
-            {
-                id: "column2",
-                name: "column2"
-            },
-            {
-                id: "column3",
-                name: "column3"
-            },
-        ]
-    )
+        )
+        .then((response) => {
+                setColumndata(response.data.response);
+                setIsLoading(false);
+            }).catch((err) => {
+                console.log(err);
+        });
+    }, [user.access]);
+
 
     const onColumnDrop = (dropResult) => {
         console.log(dropResult)
@@ -33,7 +50,7 @@ export default function Project() {
 
             <div className="container">
                 <div className="background">
-                    <h2 className="project-name">Project-name</h2>
+                    <h2 className="project-name">{data.name}</h2>
 
                     <Topbar />
                 </div>
@@ -53,8 +70,8 @@ export default function Project() {
                     {
                         columndata && columndata.map((column, index) => {
                             return (
-                                <Draggable>
-                                    <Column column_name = {column.name}/>
+                                <Draggable key={column.id}>
+                                    <Column column= {column}/>
                                 </Draggable>
                             )
                         })

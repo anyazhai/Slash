@@ -5,27 +5,10 @@ import Task from "./Task"
 import AddTask from "./AddTask";
 import AddColumn from "./AddColumn";
 
-export default function Column({column_name}){
+export default function Column({column}){
+    console.log(column)
 
-    const [taskdata, setTaskdata] = useState([
-        {
-            id: "task1",
-            name: "task1"
-        },
-        {
-            id: "task4",
-            name: "task4"
-        },
-        {
-            id: "task3",
-            name: "task3"
-        },
-        {
-            id: "task2",
-            name: "task2"
-        },
-
-    ])
+    const [taskdata, setTaskdata] = useState([])
 
     const [display, setDisplay] = useState(false)
 
@@ -35,7 +18,7 @@ export default function Column({column_name}){
 
     return (
         <div className="column-card">
-            <h4 className="column-drag-handle">{column_name}</h4>
+            <h4 className="column-drag-handle">{column.name}</h4>
                 <Container
                     groupName="col"
                     onDrop={onCardDrop}
