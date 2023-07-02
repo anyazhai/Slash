@@ -27,12 +27,6 @@ function Login() {
         }));
     }
 
-    // useEffect(()=>{
-    //     user?.access?
-    //     navigate(from, { replace : true })
-    //     : navigate("/login", { replace : true })
-    // }, [])
-
     const handleSubmit = async (e) => {
         setApimsg('Please wait while we process the details.');
         e.preventDefault();
@@ -52,17 +46,15 @@ function Login() {
                 },
             );
         
-            console.log(apiResponse);
+            console.log(apiResponse.data);
         
-            window.localStorage.setItem('access', JSON.stringify(apiResponse.data.tokens.access));
-            window.localStorage.setItem('refresh', JSON.stringify(apiResponse.data.tokens.refresh));
-            window.localStorage.setItem('username', JSON.stringify(apiResponse.data.name));
+            window.localStorage.setItem('access-token', JSON.stringify(apiResponse.data.tokens.access));
+            window.localStorage.setItem('refresh-token', JSON.stringify(apiResponse.data.tokens.refresh));
+            window.localStorage.setItem('email', JSON.stringify(apiResponse.data.email));
         
             setUser({
-                access: apiResponse.data.access,
-                role: apiResponse.data.role,
-                colour: apiResponse.data.colour,
-                username: apiResponse.data.name,
+                access: apiResponse.data.tokens.access,
+                email: apiResponse.data.email,
             });
         
             console.log(user);

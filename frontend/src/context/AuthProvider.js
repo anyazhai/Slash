@@ -5,27 +5,27 @@ const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [loading, setloading] = useState(true);
   const [user, setUser] = useState(() => {
-    if (window.localStorage.getItem('access')) {
-      const access = JSON.parse(window.localStorage.getItem('access'));
-      const username = JSON.parse(window.localStorage.getItem('username'));
+    if (window.localStorage.getItem('access-token')) {
+      const access = JSON.parse(window.localStorage.getItem('access-token'));
+      const email = JSON.parse(window.localStorage.getItem('email'));
       return {
         access,
-        username,
+        email
       };
     }
     return {
       access: '',
-      username: '',
+      email: ''
     };
   });
 
   useEffect(() => {
     if (user.access) {
-      const access = JSON.parse(window.localStorage.getItem('access'));
-      const username = JSON.parse(window.localStorage.getItem('username'));
+      const access = JSON.parse(window.localStorage.getItem('access-token'));
+      const email = JSON.parse(window.localStorage.getItem('email'));
       setUser({
         access,
-        username,
+        email,
       });
 
       console.log(user);

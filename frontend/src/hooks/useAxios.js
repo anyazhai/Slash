@@ -19,15 +19,14 @@ const useAxios = () => {
     if (!isExpired) { return config; }
 
     const response = await axios.post('http://127.0.0.1:8000/api/token/refresh/', {
-      refresh: JSON.parse(window.localStorage.getItem('refresh')),
+      refresh: JSON.parse(window.localStorage.getItem('refresh-token')),
 
     });
 
-    window.localStorage.setItem('access', response.data.tokens.access);
+    window.localStorage.setItem('access-token', response.data.tokens.access);
 
     setUser({
       access: response.data.access,
-      role: JSON.parse(window.localStorage.getItem('role')),
     });
     config.headers.Authorization = `Bearer ${response.data.tokens.access}`;
     return config;
