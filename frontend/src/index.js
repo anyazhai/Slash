@@ -8,6 +8,7 @@ import { AuthProvider } from './context/AuthProvider';
 import '../src/assets/dashboard.css'
 import '../src/assets/base.css'
 import '../src/assets/project.css'
+import '../src/assets/form.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -17,11 +17,17 @@
 
 .project-section{
     margin: 40px;
-    margin-top: 50px;
+    margin-top: 90px;
 }
 
 .project-list{
     margin-top: 30px;
+    display: flex;
+
+}
+
+.project-list a{
+    display: inline-block;
 }
 
 .project-cover-card{

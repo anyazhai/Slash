@@ -5,6 +5,7 @@ import { Container, Draggable } from "react-smooth-dnd";
 import Headerbar from "../Headerbar";
 import Topbar from "./Topbar";
 import Column from "./Column";
+import AddColumn from './AddColumn';
 import useAuth from '../../hooks/useAuth';
 import useAxios from '../../hooks/useAxios';
 
@@ -79,7 +80,7 @@ export default function Project() {
                     
                     </Container>
                     
-                    <button>Add column</button>
+                    <AddColumn/>
                 </section>
             </div>
         </div>

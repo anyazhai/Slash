@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 
 import Headerbar from "./Headerbar";
 import LoadingSpinner from './LoadingSpinner';
+import AddProject from './project/AddProject'
 import useAuth from '../hooks/useAuth';
 import useAxios from '../hooks/useAxios';
 
@@ -59,7 +60,7 @@ export default function Dashboard() {
                             )
                         })
                     }
-
+                    <AddProject />
                     </section >
                 </div>
             )}

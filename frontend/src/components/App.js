@@ -5,7 +5,6 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import Register from "./Register";
 import Project from "./project/Project";
-import CreateProject from "./project/CreateProject";
 
 import RequireAuth from './RequireAuth';
 
@@ -19,7 +18,6 @@ function App() {
 
           <Route element={<RequireAuth />}>
             <Route path="project" element={<Project />} />
-            <Route path="create/project" element={<CreateProject />} />
             <Route path="Dashboard" element={<Dashboard />} />
           </Route>
         </Route>

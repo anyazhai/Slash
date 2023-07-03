@@ -154,3 +154,11 @@
     display: block;
 
 }
+
+.column-section{
+    display: flex;
+}
+
+.column-section button{
+    display: block;
+}

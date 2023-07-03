@@ -51,7 +51,7 @@ function Register() {
 
     return (
         <div className="form-container">
-        <h1>Welcome Back!</h1>
+        <h1>Welcome</h1>
         <form onSubmit={handleSubmit}>
             <input
             type="text"
