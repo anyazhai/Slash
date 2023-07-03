@@ -1,10 +1,10 @@
 
-export default function Task(){
+export default function Task({task}){
     return (
         <div className="task">
-            <h4>Task 1</h4>
-            <div className="task-type">frontend</div>
-            <div className="priority">Priority</div>
+            <h4>{task.name}</h4>
+            <div className="task-type">{task.type}</div>
+            <div className="priority">{task.priority}</div>
             {/* <div className="assigned-to">Asigned to</div> */}
         </div>
     )
