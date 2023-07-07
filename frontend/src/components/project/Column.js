@@ -3,50 +3,21 @@ import { Container, Draggable } from "react-smooth-dnd";
 
 import Task from "./Task"
 import AddTask from "./AddTask";
-import AddColumn from "./AddColumn";
-import useAuth from '../../hooks/useAuth';
-import useAxios from '../../hooks/useAxios';
-
-const TASK_URL = '/task'
 export default function Column({column}){
 
-    const [taskdata, setTaskdata] = useState([])
-    const [isLoading, setIsLoading] = useState(false);
     const [display, setDisplay] = useState(false)
 
     const onCardDrop = (dropResult) => {
         console.log("inside cardDrop" , dropResult)
     }
 
-    const api = useAxios();
-    const { user } = useAuth();
-
-    useEffect(() => {
-        setIsLoading(true);
-        api.get(
-            TASK_URL + `?column_id=${column.id}`,
-            {
-                headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${user.access}`,
-                },
-            },
-        )
-        .then((response) => {
-                setTaskdata(response.data.response);
-                setIsLoading(false);
-            }).catch((err) => {
-                console.log(err);
-        });
-    }, [user.access]);
-
     return (
         <div className="column-card">
             <h4 className="column-drag-handle">{column.name}</h4>
-                <Container
+            <Container
                     groupName="col"
                     onDrop={onCardDrop}
-                    getChildPayload={index => taskdata[index]}
+                    getChildPayload={index => column.tasks[index]}
                     dragClass="card-ghost"
                     dropClass="card-ghost-drop"
                     dropPlaceholder={{                      
@@ -66,7 +37,7 @@ export default function Column({column}){
                     onDropReady={p => console.log('Drop ready: ', p)}
                 >
                     {
-                        taskdata && taskdata.map((task) => {
+                        column.tasks && column.tasks.map((task) => {
                             return (
                                 <Draggable>
                                     <Task task = {task}/>

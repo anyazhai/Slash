@@ -6,6 +6,8 @@ export default function Headerbar() {
         {/* <div className="profile-image">
             CS
         </div> */}
+
+        <button className="btn btn-secondary">Logout</button>
         </div>
     );
 }

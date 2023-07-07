@@ -62,7 +62,12 @@ class ColumnView(views.APIView):
         column_objects = Column.objects.filter(board_id=id)
         response = list()
         for column in column_objects:
-            response.append({'id': column.id, 'name': column.name, 'position': column.position})
+            task_objects = Task.objects.filter(column_id=column.id)
+            print(task_objects)
+            task_object = list()
+            for task in task_objects:
+                task_object.append({'id': task.id, 'name': task.name, 'position': task.position, 'priority': task.priority, 'type':task.type, 'assignee': task.assignee, 'column_id': column.id})
+            response.append({'id': column.id, 'name': column.name, 'position': column.position, 'tasks': task_object})
         return Response({'response': response})
     
     def delete(self, request, id=None):

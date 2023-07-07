@@ -1,5 +1,8 @@
 
+
 export default function Task({task}){
+    console.log(task)
+
     return (
         <div className="task">
             <h4>{task.name}</h4>
