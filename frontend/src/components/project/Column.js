@@ -81,7 +81,7 @@ export default function Column({column}){
             <button onClick={() => setDisplay(true)} className="add-task-btn">Add task</button>
             
 
-            {display && <AddTask />}
+            {display && <AddTask id={column.id}/>}
 
         </div>
     )

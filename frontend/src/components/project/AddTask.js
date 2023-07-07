@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import useAuth from '../../hooks/useAuth';
+import useAxios from '../../hooks/useAxios';
 
-export default function AddTask(){
+const CREATE_TASK_URL = '/task/'
+export default function AddTask({id}){
     const [taskdata, setTaskdata] = useState({
         name: '',
         type: '',
         priority: ''
     });
+
+    const api = useAxios();
+    const { user } = useAuth();
 
 
     function handleChange(event) {
@@ -17,6 +23,29 @@ export default function AddTask(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        try{
+            const apiResponse = await api.post(
+                CREATE_TASK_URL,
+                JSON.stringify({
+                name: taskdata.name,
+                type: taskdata.type,
+                priority: taskdata.priority,
+                column_id: id
+                }),
+                {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${user.access}`,
+                },
+                },
+            );
+        
+            console.log(apiResponse)
+            window.location.reload();
+        } catch (err) {
+            console.log(err)
+        }
     };
 
     return(
@@ -57,7 +86,14 @@ export default function AddTask(){
                         <option value="High">High</option>
                     </select>
 
-                    <button>Submit</button>
+                    <div className='flex'>
+                        
+                        <button className='btn btn-secondary' type='reset' onClick={(() => {
+                            window.location.reload()
+                        })}>Cancel</button>
+                        <button className='btn' type='submit'>Submit</button>
+                    </div>
+                    
                 </form>
             </div>
         </div>

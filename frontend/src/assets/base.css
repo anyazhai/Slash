@@ -187,7 +187,15 @@ html{
 .btn{
   padding: 5px 20px ;
   outline: none;
+  border: none;
   background-color: var(--primary40);
   color: white;
   border-radius: 5px;
+  font-weight: 600;
+}
+
+.btn-secondary{
+  background-color: transparent;
+  color: var(--primary40);
+  border: 2px solid var(--primary40);
 }
