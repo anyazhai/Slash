@@ -37,7 +37,7 @@ The major frameworks, tools, services and APIs used for the making of this proje
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/anyazhai/Hydra.git
+    git clone https://github.com/anyazhai/Slash.git
     ```
 
 **Running the Backend**
