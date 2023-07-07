@@ -1,11 +1,11 @@
 export default function Headerbar() {
     return (
         <div className="header-bar">
-        <h1>Logo</h1>
+        <h1>Slash</h1>
 
-        <div className="profile-image">
+        {/* <div className="profile-image">
             CS
-        </div>
+        </div> */}
         </div>
     );
 }

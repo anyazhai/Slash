@@ -10,7 +10,7 @@
 .background{
     background-color: var(--background-color);
     width: 100vw;
-    height: 150px;
+    height: 70px;
     position: fixed;
     top: 20px;
 }
@@ -74,7 +74,7 @@
 }
 
 .column-section{
-    margin-top: 170px;
+    margin-top: 130px;
     padding: 20px;
     width: fit-content;
     overflow: auto;

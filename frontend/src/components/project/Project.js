@@ -54,8 +54,8 @@ export default function Project() {
             <div className="container">
                 <div className="background">
                     <h2 className="project-name">{data.name}</h2>
-
-                    <Topbar />
+                    <hr></hr>
+                    {/* <Topbar /> */}
                 </div>
 
                 <section className="column-section">
