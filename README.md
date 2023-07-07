@@ -18,7 +18,6 @@
 
 ## Frameworks and Tools
 
-The major frameworks, tools, services and APIs used for the making of this project is hereby listed:
 - **Django**: API server and website backend.
 - **React**: UI and website frontend.
 - **ProstgreSQL**: Database.
