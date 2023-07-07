@@ -11,16 +11,9 @@
 
 ## Table of Contents
 
-- [Description](#description)
 - [Frameworks and Tools](#frameworks-and-tools)
 - [Installation](#installation)
 - [Roadmap](#roadmap)
-
-## Description
-Slash is a Project Management website to organise and prioritise differnt tasks and monitor workflows using the Kanban system.
-The website is built using Django on the backend and React on the frontend.
-
-<p align="right">(<a href="#top">Top</a>)</p>
 
 
 ## Frameworks and Tools
