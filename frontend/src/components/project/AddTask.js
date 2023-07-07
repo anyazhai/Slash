@@ -40,8 +40,6 @@ export default function AddTask({id}){
                 },
                 },
             );
-        
-            console.log(apiResponse)
             window.location.reload();
         } catch (err) {
             console.log(err)

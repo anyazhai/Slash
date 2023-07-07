@@ -35,8 +35,6 @@ export default function AddProject(){
                 },
                 },
             );
-        
-            console.log(apiResponse)
             window.location.reload();
         } catch (err) {
             console.log(err)

@@ -37,8 +37,6 @@ export default function AddColumn({id}){
                 },
                 },
             );
-        
-            console.log(apiResponse)
             window.location.reload();
         } catch (err) {
             console.log(err)

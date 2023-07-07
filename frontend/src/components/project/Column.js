@@ -9,7 +9,6 @@ import useAxios from '../../hooks/useAxios';
 
 const TASK_URL = '/task'
 export default function Column({column}){
-    console.log(column)
 
     const [taskdata, setTaskdata] = useState([])
     const [isLoading, setIsLoading] = useState(false);
@@ -35,7 +34,6 @@ export default function Column({column}){
         )
         .then((response) => {
                 setTaskdata(response.data.response);
-                console.log(response.data.response);
                 setIsLoading(false);
             }).catch((err) => {
                 console.log(err);
@@ -57,15 +55,15 @@ export default function Column({column}){
                         className: 'card-drop-preview' 
                     }}
                     dropPlaceholderAnimationDuration={200}
-                    // onDragStart={e => console.log("drag started", e)}
-                    // onDragEnd={e => console.log("drag end", e)}
-                    // onDragEnter={() => {
-                    //   console.log("drag enter:", column.id);
-                    // }}
-                    // onDragLeave={() => {
-                    //   console.log("drag leave:", column.id);
-                    // }}
-                    // onDropReady={p => console.log('Drop ready: ', p)}
+                    onDragStart={e => console.log("drag started", e)}
+                    onDragEnd={e => console.log("drag end", e)}
+                    onDragEnter={() => {
+                      console.log("drag enter:", column.id);
+                    }}
+                    onDragLeave={() => {
+                      console.log("drag leave:", column.id);
+                    }}
+                    onDropReady={p => console.log('Drop ready: ', p)}
                 >
                     {
                         taskdata && taskdata.map((task) => {

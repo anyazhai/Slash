@@ -3,10 +3,9 @@
     margin-top: 25px;
 }
 
-.flex .btn{
-    padding: 8px;   
-    width: 40%;
-}
+/* .flex .btn{
+     width: 40%;
+} */
 
 .background{
     background-color: var(--background-color);
