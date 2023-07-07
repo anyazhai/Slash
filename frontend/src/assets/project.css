@@ -2,12 +2,26 @@
     margin: 40px;
     margin-top: 25px;
 }
+
 .background{
     background-color: var(--background-color);
     width: 100vw;
     height: 150px;
     position: fixed;
     top: 20px;
+}
+
+.create input[type= "text"]{
+    margin-bottom: 10px;
+}
+
+.project-create-btn{
+    width: 100%;
+    font-size: 1em;
+    margin: 1.3em 0;
+    margin-top: 0.25em;
+    background-color: var(--primary40);
+    color: white;
 }
 
 .project-name{

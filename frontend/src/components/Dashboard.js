@@ -16,6 +16,7 @@ export default function Dashboard() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [projectData, setProjectData] = useState([]);
+    const [create, setCreate] = useState(false);
 
     useEffect(() => {
         setIsLoading(true);
@@ -45,7 +46,7 @@ export default function Dashboard() {
                 <div className="project-section">
                     <div className="flex">
                         <h2>Your Projects</h2>
-                        <button className="btn">Create</button>
+                        <button className="btn" onClick={(() => setCreate(true))}>Create</button>
                     </div>
 
                     <section className="project-list">
@@ -60,7 +61,7 @@ export default function Dashboard() {
                             )
                         })
                     }
-                    <AddProject />
+                    {create?<AddProject /> : null }
                     </section >
                 </div>
             )}

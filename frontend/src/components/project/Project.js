@@ -19,6 +19,8 @@ export default function Project() {
 
     const [columndata, setColumndata] = useState([])
     const [isLoading, setIsLoading] = useState(false);
+    const [addColumn, setAddColumn] = useState(false);
+
 
     useEffect(() => {
         setIsLoading(true);
@@ -79,8 +81,14 @@ export default function Project() {
                     }
                     
                     </Container>
-                    
-                    <AddColumn/>
+                    {
+                        addColumn? 
+                        <AddColumn id={data.id}/>
+                        : <div>
+                        <button onClick={(() => setAddColumn(true))} className='btn'>Add Column</button>
+                        </div>
+
+                    }
                 </section>
             </div>
         </div>
