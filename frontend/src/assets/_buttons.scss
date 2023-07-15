@@ -5,11 +5,36 @@ button{
     background-color: var(--primary40);
     color: white;
     border-radius: 5px;
+
+}
+
+.btn-primary{
+    background-color: var(--primary40);
+    color: rgb(226, 226, 226);
     font-weight: 600;
+
+    &:hover{
+        background-color: #1f80fff2;
+    }
 }
 
 .btn-secondary{
     background-color: transparent;
     color: var(--primary40);
     border: 2px solid var(--primary40);
+    font-weight: 600;
+    &:hover{
+        background-color: #0077ff16;
+    }
+}
+
+.btn-tertiary{
+    border: none;
+    color: var(--primary40);
+    background-color: transparent;
+    font-weight: 600;
+
+    &:hover{
+        background-color: #0077ff28;
+    }
 }

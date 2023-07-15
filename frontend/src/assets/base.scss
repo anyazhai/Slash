@@ -8,8 +8,10 @@ html{
   body{
       height: 100vh;
       overflow-y: hidden;
-      --primary40 : #010101;
+      --primary40 : #0077ff;
       --background-color : #f8f8ff;
+      --text-color-secondary: #050505;
+      --text-color-primary: #1c1c1c;
   }
     
 
@@ -36,6 +38,7 @@ html{
     }
     
     *{
+      color: var(--text-color-primary);
       font-family: 'Quicksand', sans-serif;
       font-weight: 400;
       background-color: none;
@@ -56,6 +59,11 @@ html{
       margin: 0;
     }
     
+
+    p{
+      color: var(--text-color-secondary);
+    }
+
     /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
     ul[role='list'],
     ol[role='list'] {
@@ -113,6 +121,7 @@ html{
     
     a{
         text-decoration: none;
+        color: #010101;
     }
     
     li{
@@ -170,12 +179,15 @@ html{
       height: 2.6em;
   }
   
+
   
   @media (max-width: 800px) {
     html{
       font-size: 12px;
     }
   }
+
+
 
 
 .flex{
@@ -191,3 +203,4 @@ html{
   border-radius: 50%;
   width: 45px;
 }
+

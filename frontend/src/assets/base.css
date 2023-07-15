@@ -26,6 +26,17 @@ form select {
   padding: 0.8em 0.9em;
   border: 0.5px solid rgba(1, 1, 1, 0.0745098039);
   background-color: #f6f8fc;
+  border-radius: 5px;
+}
+form input[type=text]:focus,
+form input[type=email]:focus,
+form input[type=number]:focus,
+form input[type=password]:focus,
+form input[type=tel]:focus,
+form select:focus {
+  box-shadow: 0 0 0 1px rgba(0, 119, 255, 0.4);
+  outline: none;
+  font-size: 1em;
 }
 form input[type=radio] {
   margin-left: 5.5em;
@@ -44,13 +55,35 @@ button {
   background-color: var(--primary40);
   color: white;
   border-radius: 5px;
+}
+
+.btn-primary {
+  background-color: var(--primary40);
+  color: rgb(226, 226, 226);
   font-weight: 600;
+}
+.btn-primary:hover {
+  background-color: rgba(31, 128, 255, 0.9490196078);
 }
 
 .btn-secondary {
   background-color: transparent;
   color: var(--primary40);
   border: 2px solid var(--primary40);
+  font-weight: 600;
+}
+.btn-secondary:hover {
+  background-color: rgba(0, 119, 255, 0.0862745098);
+}
+
+.btn-tertiary {
+  border: none;
+  color: var(--primary40);
+  background-color: transparent;
+  font-weight: 600;
+}
+.btn-tertiary:hover {
+  background-color: rgba(0, 119, 255, 0.1568627451);
 }
 
 html {
@@ -60,8 +93,10 @@ html {
 body {
   height: 100vh;
   overflow-y: hidden;
-  --primary40: #010101;
+  --primary40: #0077ff;
   --background-color: #f8f8ff;
+  --text-color-secondary: #050505;
+  --text-color-primary: #1c1c1c;
 }
 
 body {
@@ -84,6 +119,7 @@ code {
 }
 
 * {
+  color: var(--text-color-primary);
   font-family: "Quicksand", sans-serif;
   font-weight: 400;
   background-color: none;
@@ -101,6 +137,10 @@ blockquote,
 dl,
 dd {
   margin: 0;
+}
+
+p {
+  color: var(--text-color-secondary);
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -159,6 +199,7 @@ select {
 }
 a {
   text-decoration: none;
+  color: #010101;
 }
 
 li {

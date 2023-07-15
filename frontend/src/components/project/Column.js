@@ -17,7 +17,10 @@ export default function Column({column}){
 
     return (
         <div className="column-card">
-            <h4 className="column-drag-handle">{column.name}</h4>
+            <div className="flex">
+                <button onClick={() => setDisplay(true)} className="btn-tertiary">+</button>
+                <h4 className="column-drag-handle">{column.name}</h4>
+            </div>
             <Container
                     groupName="col"
                     onDrop={onCardDrop}
@@ -40,6 +43,7 @@ export default function Column({column}){
                     // }}
                     // onDropReady={p => console.log('Drop ready: ', p)}
                 >
+                    
                     {
                         column.tasks && column.tasks.map((task) => {
                             return (
@@ -51,8 +55,6 @@ export default function Column({column}){
                     }
                 
                 </Container> 
-            <button onClick={() => setDisplay(true)} className="add-task-btn">Add task</button>
-            
 
             {display && <AddTask id={column.id}/>}
 

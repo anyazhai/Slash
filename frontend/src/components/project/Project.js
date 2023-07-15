@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { Container, Draggable } from "react-smooth-dnd";
 
 import Headerbar from "../Headerbar";
-// import Topbar from "./Topbar";
+import Topbar from "./Topbar";
 import Column from "./Column";
 import AddColumn from './AddColumn';
 import useAuth from '../../hooks/useAuth';
@@ -63,7 +63,7 @@ export default function Project() {
             <div className="background">
                 <h2 className="project-name">{data.name}</h2>
                 <hr></hr>
-                {/* <Topbar /> */}
+                <Topbar />
             </div>
 
             <section className="column-section">
@@ -76,7 +76,7 @@ export default function Project() {
                 animationDuration: 150,
                 showOnTop: true,
                 className: 'column-drop-preview'
-                }} > 
+                }}>
 
                 {
                     columndata && columndata.map((column, index) => {

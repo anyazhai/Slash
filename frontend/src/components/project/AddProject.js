@@ -53,7 +53,8 @@ export default function AddProject(){
                     required
                     />
 
-            <button className="btn project-create-btn">Submit</button>
+            <button className="btn btn-primary"  type="submit">Submit</button>
+            <button onClick={() => {window.location.reload();}} className="btn-tertiary" type="reset">Cancel</button>
             </form>
         </div>
     )

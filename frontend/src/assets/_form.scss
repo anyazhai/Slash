@@ -28,10 +28,22 @@ form{
         padding: 0.8em 0.9em;
         border: 0.5px solid #01010113;
         background-color: #f6f8fc;
+        border-radius: 5px;
+
+        &:focus{
+            box-shadow: 0 0 0 1px #0077ff66;
+                // inset 0 0 0 1px #fff;
+            
+            outline: none;
+            font-size: 1em;
+        }
     }
     input[type= "radio"]{
         margin-left: 5.5em;
     }
+
+    
+
 
     button{
         width: 100%;
