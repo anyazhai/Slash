@@ -6,9 +6,9 @@ export function ColumnProvider({ children }) {
     const [columndata, setColumndata] = useState();
 
     return (
-      <ColumnContext.Provider value={{ columndata, setColumndata }}>
+        <ColumnContext.Provider value={{ columndata, setColumndata}}>
         {children}
-      </ColumnContext.Provider>
+        </ColumnContext.Provider>
     );
   }
   

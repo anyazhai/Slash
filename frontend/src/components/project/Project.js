@@ -9,9 +9,10 @@ import Column from "./Column";
 import AddColumn from './AddColumn';
 import useAuth from '../../hooks/useAuth';
 import useAxios from '../../hooks/useAxios';
-import useColumn from '../../hooks/useColumn';
 
 const COLUMN_URL = '/column'
+
+
 export default function Project() {
     const location = useLocation();
     const data = location.state.project.project;
@@ -19,18 +20,10 @@ export default function Project() {
     const api = useAxios();
     const { user } = useAuth();
 
-    const {columndata, setColumndata } = useColumn();
+    const [columndata, setColumndata ] = useState();
 
     const [isLoading, setIsLoading] = useState(false);
     const [addColumn, setAddColumn] = useState(false);
-
-    function findItemById(id, array) {
-        return array.find((item) => item.id === id)
-    }
-
-    function RemoveItemById(id, array) {
-        return array.filter((item) => item.id !== id)
-    }
 
     useEffect(() => {
         setIsLoading(true);
@@ -84,7 +77,7 @@ export default function Project() {
                     columndata && columndata.map((column, index) => {
                         return (
                             <Draggable key={column.id}>
-                                <Column column= {column}/>
+                                <Column col= {column}/>
                             </Draggable>
                         )
                     })
