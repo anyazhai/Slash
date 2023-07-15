@@ -9,6 +9,7 @@ import Column from "./Column";
 import AddColumn from './AddColumn';
 import useAuth from '../../hooks/useAuth';
 import useAxios from '../../hooks/useAxios';
+import useColumn from '../../hooks/useColumn';
 
 const COLUMN_URL = '/column'
 export default function Project() {
@@ -18,7 +19,8 @@ export default function Project() {
     const api = useAxios();
     const { user } = useAuth();
 
-    const [columndata, setColumndata] = useState([])
+    const {columndata, setColumndata } = useColumn();
+
     const [isLoading, setIsLoading] = useState(false);
     const [addColumn, setAddColumn] = useState(false);
 

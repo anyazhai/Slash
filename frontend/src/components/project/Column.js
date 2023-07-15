@@ -12,14 +12,19 @@ export default function Column({column}){
     })
 
     const onCardDrop = (dropResult) => {
-        console.log("Task: " , dropResult)
+        if(dropResult.removedIndex !== null){
+            console.log("Task: " , dropResult)
+        }
+
+        if(dropResult.addedIndex !== null)
+            console.log("Task: " , dropResult)
     }
 
     return (
         <div className="column-card">
-            <div className="flex">
+            <div className="flex column-drag-handle">
                 <button onClick={() => setDisplay(true)} className="btn-tertiary">+</button>
-                <h4 className="column-drag-handle">{column.name}</h4>
+                <h4 className="">{column.name}</h4>
             </div>
             <Container
                     groupName="col"
