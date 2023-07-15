@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Container, Draggable } from "react-smooth-dnd";
 
 import Task from "./Task"
@@ -6,9 +6,13 @@ import AddTask from "./AddTask";
 export default function Column({column}){
 
     const [display, setDisplay] = useState(false)
+    const [dragData, setDragdata] = useState({
+        dragStartColumn: -1,
+        dragEndColumn: -1,
+    })
 
     const onCardDrop = (dropResult) => {
-        console.log("inside cardDrop" , dropResult)
+        console.log("Task: " , dropResult)
     }
 
     return (
@@ -26,15 +30,15 @@ export default function Column({column}){
                         className: 'card-drop-preview' 
                     }}
                     dropPlaceholderAnimationDuration={200}
-                    onDragStart={e => console.log("drag started", e)}
-                    onDragEnd={e => console.log("drag end", e)}
-                    onDragEnter={() => {
-                      console.log("drag enter:", column.id);
-                    }}
-                    onDragLeave={() => {
-                      console.log("drag leave:", column.id);
-                    }}
-                    onDropReady={p => console.log('Drop ready: ', p)}
+                    // onDragStart={e => console.log("drag started", e)}
+                    // onDragEnd={e => console.log("drag end ", e)}
+                    // onDragEnter={() => {
+                    //   console.log("drag enter: ", column.id);
+                    // }}
+                    // onDragLeave={() => {
+                    //   console.log("drag leave: ", column.id);
+                    // }}
+                    // onDropReady={p => console.log('Drop ready: ', p)}
                 >
                     {
                         column.tasks && column.tasks.map((task) => {

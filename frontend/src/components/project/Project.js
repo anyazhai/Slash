@@ -44,7 +44,6 @@ export default function Project() {
         .then((response) => {
                 setColumndata(response.data.response);
                 setIsLoading(false);
-                console.log(response.data.response)
             }).catch((err) => {
                 console.log(err);
         });
@@ -52,7 +51,7 @@ export default function Project() {
 
 
     const onColumnDrop = (dropResult) => {
-        console.log(dropResult)
+        console.log('column ', dropResult)
     }
 
     return (
