@@ -3,7 +3,6 @@ import { Container, Draggable } from "react-smooth-dnd";
 
 import Task from "./Task"
 import AddTask from "./AddTask";
-import useColumn from '../../hooks/useColumn';
 
 import useAuth from '../../hooks/useAuth';
 import useAxios from '../../hooks/useAxios';
@@ -13,7 +12,6 @@ const UPDATE_POS_URL = '/position/update/'
 export default function Column({col}){
     const { user } = useAuth();
     const api = useAxios();
-    // const {columndata, setColumndata} = useColumn();
 
     const [display, setDisplay] = useState(false)
 
