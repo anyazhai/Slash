@@ -54,7 +54,7 @@ Now the backend is running. To access the admin panel go to http://localhost:800
 **Running the Frontend**
 <div></div>
 
-4. Install frontend dependencies:
+4. Open a new terminal window. Install frontend dependencies:
     ```sh
     cd frontend
     npm install
