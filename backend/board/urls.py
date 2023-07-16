@@ -10,4 +10,5 @@ urlpatterns = [
     path('column/<int:id>/', views.ColumnView.as_view(), name="columnDataDelete"),
     path('task/', views.TaskView.as_view(), name="taskdata"),
     path('task/<int:id>/', views.TaskView.as_view(), name="taskDataDelete"),
+    path('position/update/', views.UpdatePosition.as_view(), name="update task position"),
 ]

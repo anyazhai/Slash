@@ -5,9 +5,16 @@ import Task from "./Task"
 import AddTask from "./AddTask";
 import useColumn from '../../hooks/useColumn';
 
-export default function Column({col}){
+import useAuth from '../../hooks/useAuth';
+import useAxios from '../../hooks/useAxios';
 
-    const {columndata, setColumndata} = useColumn();
+const UPDATE_POS_URL = '/position/update/'
+
+export default function Column({col}){
+    const { user } = useAuth();
+    const api = useAxios();
+    // const {columndata, setColumndata} = useColumn();
+
     const [display, setDisplay] = useState(false)
 
     const [column, setColumn] = useState(col);
@@ -46,38 +53,48 @@ export default function Column({col}){
         }
         newArray[index] = payload;
 
-        console.log("New: ", newArray)
-
         setColumn((prevData) =>  ({
             ...prevData,
             tasks: newArray
             }))
 
-        setColumndata((prevdata) => ({
-            ...prevdata,
-            [`${payload.id}`]: {column: column.id, position: index + 1}
-        }))
-
-        console.log(columndata)
+        try{
+            const apiResponse = api.post(
+                UPDATE_POS_URL,
+                JSON.stringify({
+                task: payload.id,
+                column: column.id, 
+                position: index + 1
+                }),
+                {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${user.access}`,
+                },
+                },
+            );
+            // window.location.reload();
+            console.log(apiResponse)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     let taskArray;
     const onCardDrop = (dropResult) => {
         
         if(dropResult.removedIndex !== null && dropResult.addedIndex !== null ){
-            console.log("Task: " , dropResult)
             taskArray = RemoveItemById(dropResult.payload.id, column.tasks);
             addColumndata(dropResult.payload, dropResult.addedIndex, taskArray)
         }
 
         else{
             if(dropResult.removedIndex !== null){
-                console.log("Task: " , dropResult)
                 taskArray = RemoveItemById(dropResult.payload.id, column.tasks);
                 handleColumnData(taskArray)
             }
             if(dropResult.addedIndex !== null){
-                console.log("Task droped: " , dropResult);
                 addColumndata(dropResult.payload, dropResult.addedIndex)
             }
         }

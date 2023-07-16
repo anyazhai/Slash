@@ -1,7 +1,7 @@
 from rest_framework import views, permissions
 from rest_framework.response import Response
 
-from .serializers import BoardSerializer, ColumnSerializer, TaskSerializer
+from .serializers import BoardSerializer, ColumnSerializer, TaskSerializer, UpdateTaskSerializer
 from .models import Board, Column, Task
 from users.models import User
 
@@ -143,6 +143,26 @@ class TaskView(views.APIView):
         return Response(serializer.data)
     
 
-class orderColumn(views.APIView):
+class UpdatePosition(views.APIView):
+    permission_classes = (permissions.IsAuthenticated,)
+
     def post(self, request):
-        pass
+        task_id = request.data['task']
+        column_id = request.data['column']
+        position = request.data['position']
+
+        task = Task.objects.get(id=task_id)
+        task_object = Task.objects.filter(column_id=column_id)
+        for t in task_object:
+            if t.position >= position:
+                t.position = t.position + 1
+                t.save()
+        
+        column_object = Column.objects.get(id=column_id)
+        task.column_id = column_object
+        task.position = position
+        task.save()
+
+        return Response({
+            'data': 'position updated'
+        })
