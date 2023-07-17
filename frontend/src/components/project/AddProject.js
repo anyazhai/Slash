@@ -36,7 +36,6 @@ export default function AddProject() {
       );
       window.location.reload();
     } catch (err) {
-      console.log(err);
     }
   };
 

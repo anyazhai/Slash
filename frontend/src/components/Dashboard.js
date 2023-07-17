@@ -32,7 +32,6 @@ export default function Dashboard() {
         setProjectData(response.data.response);
         setIsLoading(false);
       }).catch((err) => {
-        console.log(err);
       });
   }, [user.access]);
 

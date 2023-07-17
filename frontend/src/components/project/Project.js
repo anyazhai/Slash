@@ -39,12 +39,10 @@ export default function Project() {
         setColumndata(response.data.response);
         setIsLoading(false);
       }).catch((err) => {
-        console.log(err);
       });
   }, [user.access]);
 
   const onColumnDrop = (dropResult) => {
-    console.log('column ', dropResult);
   };
 
   return (

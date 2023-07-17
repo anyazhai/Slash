@@ -44,8 +44,6 @@ function Login() {
         },
       );
 
-      console.log(apiResponse.data);
-
       window.localStorage.setItem('access-token', JSON.stringify(apiResponse.data.tokens.access));
       window.localStorage.setItem('refresh-token', JSON.stringify(apiResponse.data.tokens.refresh));
       window.localStorage.setItem('email', JSON.stringify(apiResponse.data.email));
@@ -54,8 +52,6 @@ function Login() {
         access: apiResponse.data.tokens.access,
         email: apiResponse.data.email,
       });
-
-      console.log(user);
       navigate(from, { replace: true });
     } catch (err) {
       if (!err?.response || err.response?.status === 500) {

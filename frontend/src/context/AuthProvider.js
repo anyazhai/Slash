@@ -27,8 +27,6 @@ export function AuthProvider({ children }) {
         access,
         email,
       });
-
-      console.log(user);
     }
     setloading(false);
   }, [loading]);

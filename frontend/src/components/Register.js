@@ -40,10 +40,8 @@ function Register() {
         },
       );
 
-      console.log(apiResponse);
       navigate('/login', { replace: true });
     } catch (err) {
-      console.log(err);
     }
   };
 

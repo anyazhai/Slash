@@ -41,7 +41,6 @@ export default function AddTask({ id }) {
       );
       window.location.reload();
     } catch (err) {
-      console.log(err);
     }
   };
 

@@ -68,10 +68,7 @@ export default function Column({ col }) {
           },
         },
       );
-      // window.location.reload();
-      console.log(apiResponse);
     } catch (err) {
-      console.log(err);
     }
   }
 

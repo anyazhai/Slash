@@ -18,8 +18,6 @@ export default function AddColumn({ id }) {
     }));
   }
 
-  console.log(id);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -39,7 +37,6 @@ export default function AddColumn({ id }) {
       );
       window.location.reload();
     } catch (err) {
-      console.log(err);
     }
   };
 
