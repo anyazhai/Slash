@@ -6,9 +6,9 @@ import App from './components/App';
 import { AuthProvider } from './context/AuthProvider';
 import { ColumnProvider } from './context/ColumnContext';
 
-import '../src/assets/dashboard.css'
-import '../src/assets/base.css'
-import '../src/assets/project.css'
+import './assets/dashboard.css';
+import './assets/base.css';
+import './assets/project.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,7 +20,5 @@ root.render(
         </Routes>
       </ColumnProvider>
     </AuthProvider>
-  </BrowserRouter>
+  </BrowserRouter>,
 );
-
-

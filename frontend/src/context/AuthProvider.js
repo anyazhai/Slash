@@ -10,12 +10,12 @@ export function AuthProvider({ children }) {
       const email = JSON.parse(window.localStorage.getItem('email'));
       return {
         access,
-        email
+        email,
       };
     }
     return {
       access: '',
-      email: ''
+      email: '',
     };
   });
 

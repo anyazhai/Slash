@@ -1,17 +1,17 @@
 import { createImageFromInitials } from './ProfileImage';
 
 export default function Headerbar() {
-    return (
-        <div className="header-bar">
-        <h1>Slash</h1>
+  return (
+    <div className="header-bar">
+      <h1>Slash</h1>
 
-        {/* <div className="profile-image">
+      {/* <div className="profile-image">
             CS
         </div> */}
 
-        <button className="btn btn-secondary">Logout</button>
+      <button className="btn btn-secondary">Logout</button>
 
-        <div className="img-padding">
+      {/* <div className="img-padding">
                 <img
                     id="img-preview"
                     src={
@@ -21,9 +21,8 @@ export default function Headerbar() {
                     }
                     alt="profile-pic"
                 />
-            </div>
-        </div>
+            </div> */}
+    </div>
 
-        
-    );
+  );
 }
