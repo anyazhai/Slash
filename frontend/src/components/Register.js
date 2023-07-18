@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import axios from '../api/axios';
 
@@ -86,6 +86,11 @@ function Register() {
         />
 
         <br />
+
+        <p>
+          Already have an account?
+          <Link className="login-link" to="/login"> Login here.</Link>
+        </p>
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>

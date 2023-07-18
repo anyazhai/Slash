@@ -1,6 +1,7 @@
 from django.db import models
 from users.models import User
 
+
 class Board(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
@@ -30,8 +31,8 @@ class Task(models.Model):
     name = models.CharField(max_length=30)
     column_id = models.ForeignKey(Column, on_delete=models.CASCADE)
     assignee = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-    priority = models.CharField(max_length=30) #medium high low
-    type = models.CharField(max_length=30) #frontend, backend deployment
+    priority = models.CharField(max_length=30) 
+    type = models.CharField(max_length=30) 
     position = models.IntegerField()
 
     class Meta:

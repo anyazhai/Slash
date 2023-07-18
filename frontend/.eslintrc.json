@@ -27,6 +27,7 @@
         "jsx-a11y/no-noninteractive-element-interactions": "off",
         "no-unused-vars": "off",
         "no-nested-ternary": "off",
-        "camelcase": "off"
+        "camelcase": "off",
+        "no-empty": "off"
     }
 }

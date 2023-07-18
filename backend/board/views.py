@@ -1,7 +1,7 @@
 from rest_framework import views, permissions
 from rest_framework.response import Response
 
-from .serializers import BoardSerializer, ColumnSerializer, TaskSerializer, UpdateTaskSerializer
+from .serializers import BoardSerializer, ColumnSerializer, TaskSerializer
 from .models import Board, Column, Task
 from users.models import User
 
@@ -13,7 +13,6 @@ class BoardView(views.APIView):
         serializer = BoardSerializer(data=self.request.data, context={'request': self.request})
         serializer.is_valid(raise_exception=True)
         user = User.objects.get(email=request.user)
-        
         Board.objects.create(user=user, name=serializer.data['name'])
         return Response({"message": "Board has been created"})
 
@@ -48,10 +47,8 @@ class ColumnView(views.APIView):
     def post(self, request):
         serializer = ColumnSerializer(data=self.request.data, context={'request': self.request})
         serializer.is_valid(raise_exception=True)
-        print(serializer.data['board_id'])
         position = self.columnPosition(serializer.data['board_id'])
         board = Board.objects.get(id=serializer.data['board_id'])
-
         Column.objects.create(position=position, board_id=board, name=serializer.data['name'])
         return Response({
             'data': serializer.data
@@ -63,7 +60,6 @@ class ColumnView(views.APIView):
         response = list()
         for column in column_objects:
             task_objects = Task.objects.filter(column_id=column.id)
-            print(task_objects)
             task_object = list()
             for task in task_objects:
                 task_object.append({'id': task.id, 'name': task.name, 'position': task.position, 'priority': task.priority, 'type':task.type, 'assignee': task.assignee, 'column_id': column.id})
@@ -73,13 +69,10 @@ class ColumnView(views.APIView):
     def delete(self, request, id=None):
         try:
             column_object = Column.objects.get(id=id)
-            print('try')
         except:
-            print('except')
             return Response(status=404)
         
         col_count = Column.objects.filter(board_id=column_object.board_id).count()
-
         column_object.delete()
 
         if column_object.position == col_count:
@@ -105,10 +98,8 @@ class TaskView(views.APIView):
     def post(self, request):
         serializer = TaskSerializer(data=self.request.data, context={'request': self.request})
         serializer.is_valid(raise_exception=True)
-        print(serializer.data['column_id'])
         position = self.taskPosition(serializer.data['column_id'])
         column = Column.objects.get(id=serializer.data['column_id'])
-        print("column data", column)
         Task.objects.create(position=position, column_id=column, name=serializer.data['name'], priority=serializer.data['priority'], type=serializer.data['type'])
         return Response({
             'data': 'Task added'
@@ -129,7 +120,6 @@ class TaskView(views.APIView):
             return Response(status=404)
         
         task_count = Task.objects.filter(column_id=task_object.column_id).count()
-
         task_object.delete()
 
         if task_object.position == task_count:
@@ -162,7 +152,4 @@ class UpdatePosition(views.APIView):
         task.column_id = column_object
         task.position = position
         task.save()
-
-        return Response({
-            'data': 'position updated'
-        })
+        return Response(status=202)
